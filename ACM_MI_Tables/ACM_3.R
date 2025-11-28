@@ -73,4 +73,4 @@ ACM_3_2 <- list(one_source_pro_vacants %>% filter(Tenure == 'social' & is.na(Vac
     )
   )
 
-
+ACM_3 <- list(ACM_3_1, ACM_3_2)
