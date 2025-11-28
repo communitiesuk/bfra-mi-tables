@@ -20,7 +20,7 @@ ACM_4 <- list(one_source_pro_LAs %>% count(LocalAuthority, name = 'Number of bui
   rename(`Local Authority [note_2]` = `LocalAuthority` ) %>%
   
   replace(is.na(.), 0) %>%
-  #calculates the percentages needed and bands them following the tempate used in the MI tables
+  #calculates the percentages needed and bands the percentages and numbers following the template used in the MI tables
   mutate(
     `Percentage of buildings with ACM cladding systems completed remediation` =  (`Completed` / `Number of buildings identified with ACM cladding systems (unlikely to meet Building Regulations)`),
     `Percentage of buildings with ACM cladding systems started or completed remediation` =  (`Started or completed` / `Number of buildings identified with ACM cladding systems (unlikely to meet Building Regulations)`),
@@ -53,7 +53,7 @@ ACM_4 <- list(one_source_pro_LAs %>% count(LocalAuthority, name = 'Number of bui
       `Number of buildings with ACM cladding systems (unlikely to meet Building Regulations) yet to be remediated` > 10 & `Number of buildings with ACM cladding systems (unlikely to meet Building Regulations) yet to be remediated` < 21 ~ '11 to 20'
     )
   ) %>%
-  #reorders the columns
+  #removes the started and completed and completed columns as these aren't used in the table
   select(`Local Authority [note_2]`, `Number of buildings identified with ACM cladding systems (unlikely to meet Building Regulations)`,
     `Number of buildings with ACM cladding systems (unlikely to meet Building Regulations) yet to be remediated`, 
     `Percentage of buildings with ACM cladding systems completed remediation`,
