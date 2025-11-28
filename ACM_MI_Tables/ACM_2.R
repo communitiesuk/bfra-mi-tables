@@ -1,4 +1,3 @@
-library(forcats)
 
 one_source_pro <- one_source_pro %>%
   mutate(Tenure = factor(Tenure),
@@ -20,7 +19,11 @@ ACM_2 <- list(one_source_pro %>% filter(Tenure == 'social') %>% count(CombinedCa
                          one_source_pro %>% filter(Tenure == 'public') %>% count(CombinedCategory, name  = 'Publicly-owned buildings Number', sort = FALSE),
               
                          one_source_pro %>% count(CombinedCategory, name = 'Total: all tenures Number', sort = FALSE)) %>% reduce(full_join, by = 'CombinedCategory') %>%
-  rename(`Remediation Category` =`CombinedCategory` ) %>%
+  rename(`Remediation Category` = `CombinedCategory` ) %>%
+  # 
+  # mutate(`Remediation Category` = factor(`Remediation Category`, levels = c('Completed Remediation', 'Works complete awaiting building control signoff', 'Remediation started - cladding removed', 'Remediation started', 'Remediation plans in place'
+  #                                                                           , 'Reported an intent to remediate', 'Remediation plan unclear', 'Total buildings'))) %>%
+  
   #calculates the percentage of the total
   mutate(
     `Social sector residential Percentage (%)` = (`Social sector residential Number` / sum(`Social sector residential Number`)),
@@ -29,6 +32,7 @@ ACM_2 <- list(one_source_pro %>% filter(Tenure == 'social') %>% count(CombinedCa
     `Hotels Percentage (%)` = (`Hotels Number` / sum(`Hotels Number`)),
     `Publicly-owned buildings Percentage (%)` = (`Publicly-owned buildings Number` / sum(`Publicly-owned buildings Number`)),
     `Total: all tenures Percentage (%)` = (`Total: all tenures Number` / sum(`Total: all tenures Number`))) %>%
+  
   #reorders the columns
   select(
     `Remediation Category`,
@@ -39,7 +43,14 @@ ACM_2 <- list(one_source_pro %>% filter(Tenure == 'social') %>% count(CombinedCa
     `Publicly-owned buildings Number`, `Publicly-owned buildings Percentage (%)`,
     `Total: all tenures Number`, `Total: all tenures Percentage (%)`
   ) %>%
+  
+  #replace NA with 0
   replace(is.na(.), 0) %>%
+  
+  #order the rows correctly (according to the order specified in the factor levels)
+  arrange(`Remediation Category`) %>% 
+  
+  #creates the total row
   bind_rows(
     summarise(.,
               `Remediation Category` = "Total buildings",
@@ -56,7 +67,5 @@ ACM_2 <- list(one_source_pro %>% filter(Tenure == 'social') %>% count(CombinedCa
               `Total: all tenures Number` = sum(`Total: all tenures Number`),
               `Total: all tenures Percentage (%)` = 1
     )
-  ) %>%
-  arrange(`Remediation Category`)
+  )
 
-print(ACM_2$`Remediation Category`)
