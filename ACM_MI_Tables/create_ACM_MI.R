@@ -46,7 +46,12 @@ master_analytical_last_month = file.path(acm_raw_final_path, list.files(acm_raw_
 # read in last month's OSP
 one_source_pro_last_month <-read_excel(master_analytical_last_month, sheet = 'One_source_pro')
 
+source(file.path("D:", "Users", Sys.getenv("USERNAME"), 'Github','sgba-mi-tables', 'ACM_MI_Tables', 'create_OSP_factors.R'))
+
+
 source(file.path("D:", "Users", Sys.getenv("USERNAME"), 'Github','sgba-mi-tables', 'ACM_MI_Tables', 'ACM_1.R'))
 source(file.path("D:", "Users", Sys.getenv("USERNAME"), 'Github','sgba-mi-tables', 'ACM_MI_Tables', 'ACM_2.R'))
 source(file.path("D:", "Users", Sys.getenv("USERNAME"), 'Github','sgba-mi-tables', 'ACM_MI_Tables', 'ACM_3.R'))
 source(file.path("D:", "Users", Sys.getenv("USERNAME"), 'Github','sgba-mi-tables', 'ACM_MI_Tables', 'ACM_4.R'))
+source(file.path("D:", "Users", Sys.getenv("USERNAME"), 'Github','sgba-mi-tables', 'ACM_MI_Tables', 'ACM_5.R'))
+source(file.path("D:", "Users", Sys.getenv("USERNAME"), 'Github','sgba-mi-tables', 'ACM_MI_Tables', 'ACM_6.R'))
