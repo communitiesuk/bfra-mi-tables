@@ -4,6 +4,7 @@ library(dplyr)
 library(tidyr)
 library(purrr)
 library(readxl)
+library(stringr)
 
 is_dir <- function(path) {
   if(!dir.exists(path)){
