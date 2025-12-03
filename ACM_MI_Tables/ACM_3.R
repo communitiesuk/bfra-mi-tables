@@ -18,7 +18,7 @@ ACM_3_1 <- list(one_source_pro_vacants %>% filter(Tenure == 'social' & grepl('Va
               
                 one_source_pro_vacants %>% filter(Tenure == 'student' & grepl('Vacant', Vacant)) %>% count(CombinedCategory_Vacants, name  = 'Student accommodation'),
               
-                one_source_pro_vacants %>% filter(Tenure == 'hotels' & grepl('Vacant', Vacant)) %>% count(CombinedCategory_Vacants, name  = 'Hotels'),
+                one_source_pro_vacants %>% filter(Tenure == 'hotel' & grepl('Vacant', Vacant)) %>% count(CombinedCategory_Vacants, name  = 'Hotels'),
               
                 one_source_pro_vacants %>% filter(Tenure == 'public' & grepl('Vacant', Vacant)) %>% count(CombinedCategory_Vacants, name  = 'Publicly-owned buildings')) %>% 
   reduce(full_join, by = 'CombinedCategory_Vacants') %>%
@@ -49,7 +49,7 @@ ACM_3_2 <- list(one_source_pro_vacants %>% filter(Tenure == 'social' & is.na(Vac
               
                 one_source_pro_vacants %>% filter(Tenure == 'student' & is.na(Vacant)) %>% count(CombinedCategory, name  = 'Student accommodation'),
               
-                one_source_pro_vacants %>% filter(Tenure == 'hotels' & is.na(Vacant)) %>% count(CombinedCategory, name  = 'Hotels'),
+                one_source_pro_vacants %>% filter(Tenure == 'hotel' & is.na(Vacant)) %>% count(CombinedCategory, name  = 'Hotels'),
               
                 one_source_pro_vacants %>% filter(Tenure == 'public' & is.na(Vacant)) %>% count(CombinedCategory, name  = 'Publicly-owned buildings')) %>% 
   reduce(full_join, by = 'CombinedCategory') %>%

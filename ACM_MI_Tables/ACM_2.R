@@ -1,11 +1,11 @@
 
-one_source_pro <- one_source_pro %>%
-  mutate(Tenure = factor(Tenure),
-         CombinedCategory = factor(CombinedCategory, levels = c('Remediation completed', 'Works complete awaiting building control signoff', 'Remediation started - cladding removed',
-                                                                              'Remediation started', 'Plans in place', 'Responded with intent', 'Remediation plan unclear') ))
-#these are the row names used in the MI tables
-levels(one_source_pro$CombinedCategory) <- c('Completed Remediation', 'Works complete awaiting building control signoff', 'Remediation started - cladding removed', 'Remediation started', 'Remediation plans in place'
-                             , 'Reported an intent to remediate', 'Remediation plan unclear')
+# one_source_pro <- one_source_pro %>%
+#   mutate(Tenure = factor(Tenure),
+#          CombinedCategory = factor(CombinedCategory, levels = c('Remediation completed', 'Works complete awaiting building control signoff', 'Remediation started - cladding removed',
+#                                                                               'Remediation started', 'Plans in place', 'Responded with intent', 'Remediation plan unclear') ))
+# #these are the row names used in the MI tables
+# levels(one_source_pro$CombinedCategory) <- c('Completed Remediation', 'Works complete awaiting building control signoff', 'Remediation started - cladding removed', 'Remediation started', 'Remediation plans in place'
+#                              , 'Reported an intent to remediate', 'Remediation plan unclear')
 
 
 ACM_2 <- list(one_source_pro %>% filter(Tenure == 'social') %>% count(CombinedCategory, name  = 'Social sector residential Number', sort = FALSE),
@@ -14,7 +14,7 @@ ACM_2 <- list(one_source_pro %>% filter(Tenure == 'social') %>% count(CombinedCa
               
                          one_source_pro %>% filter(Tenure == 'student') %>% count(CombinedCategory, name  = 'Student accommodation Number', sort = FALSE),
               
-                         one_source_pro %>% filter(Tenure == 'hotels') %>% count(CombinedCategory, name  = 'Hotels Number', sort = FALSE),
+                         one_source_pro %>% filter(Tenure == 'hotel') %>% count(CombinedCategory, name  = 'Hotels Number', sort = FALSE),
               
                          one_source_pro %>% filter(Tenure == 'public') %>% count(CombinedCategory, name  = 'Publicly-owned buildings Number', sort = FALSE),
               
@@ -23,6 +23,8 @@ ACM_2 <- list(one_source_pro %>% filter(Tenure == 'social') %>% count(CombinedCa
   # 
   # mutate(`Remediation Category` = factor(`Remediation Category`, levels = c('Completed Remediation', 'Works complete awaiting building control signoff', 'Remediation started - cladding removed', 'Remediation started', 'Remediation plans in place'
   #                                                                           , 'Reported an intent to remediate', 'Remediation plan unclear', 'Total buildings'))) %>%
+  #replace NA with 0
+  replace(is.na(.), 0) %>%
   
   #calculate the percentage of the total
   mutate(
@@ -44,8 +46,6 @@ ACM_2 <- list(one_source_pro %>% filter(Tenure == 'social') %>% count(CombinedCa
     `Total: all tenures Number`, `Total: all tenures Percentage (%)`
   ) %>%
   
-  #replace NA with 0
-  replace(is.na(.), 0) %>%
   
   #order the rows correctly (according to the order specified in the factor levels)
   arrange(`Remediation Category`) %>% 

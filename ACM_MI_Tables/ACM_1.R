@@ -1,12 +1,10 @@
-library(dplyr)
-
-one_source_pro <- one_source_pro %>%
-  mutate(Tenure = factor(Tenure))
-
-
-one_source_pro_last_month <- one_source_pro_last_month %>%
-  mutate(Tenure = factor(Tenure)) %>%
-  rename(`Tenure Last Month` = `Tenure`)
+# one_source_pro <- one_source_pro %>%
+#   mutate(Tenure = factor(Tenure))
+# 
+# 
+# one_source_pro_last_month <- one_source_pro_last_month %>%
+#   mutate(Tenure = factor(Tenure)) %>%
+#   rename(`Tenure Last Month` = `Tenure`)
 
 ACM_1 <- full_join(
   one_source_pro %>%
