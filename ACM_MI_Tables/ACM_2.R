@@ -1,13 +1,3 @@
-
-# one_source_pro <- one_source_pro %>%
-#   mutate(Tenure = factor(Tenure),
-#          CombinedCategory = factor(CombinedCategory, levels = c('Remediation completed', 'Works complete awaiting building control signoff', 'Remediation started - cladding removed',
-#                                                                               'Remediation started', 'Plans in place', 'Responded with intent', 'Remediation plan unclear') ))
-# #these are the row names used in the MI tables
-# levels(one_source_pro$CombinedCategory) <- c('Completed Remediation', 'Works complete awaiting building control signoff', 'Remediation started - cladding removed', 'Remediation started', 'Remediation plans in place'
-#                              , 'Reported an intent to remediate', 'Remediation plan unclear')
-
-
 ACM_2 <- list(one_source_pro %>% filter(Tenure == 'social') %>% count(CombinedCategory, name  = 'Social sector residential Number'),
                          
                          one_source_pro %>% filter(Tenure == 'private residential') %>% count(CombinedCategory, name  = 'Private sector residential Number'),
@@ -20,9 +10,6 @@ ACM_2 <- list(one_source_pro %>% filter(Tenure == 'social') %>% count(CombinedCa
               
                          one_source_pro %>% count(CombinedCategory, name = 'Total: all tenures Number')) %>% reduce(full_join, by = 'CombinedCategory') %>%
   rename(`Remediation Category` = `CombinedCategory` ) %>%
-  # 
-  # mutate(`Remediation Category` = factor(`Remediation Category`, levels = c('Completed Remediation', 'Works complete awaiting building control signoff', 'Remediation started - cladding removed', 'Remediation started', 'Remediation plans in place'
-  #                                                                           , 'Reported an intent to remediate', 'Remediation plan unclear', 'Total buildings'))) %>%
   #replace NA with 0
   replace(is.na(.), 0) %>%
   

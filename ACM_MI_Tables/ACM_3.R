@@ -1,7 +1,7 @@
 #ACM_3 does not include buildings which have completed remediation
-one_source_pro_vacants <- one_source_pro %>% filter(CombinedCategory != 'Completed Remediation')
+one_source_pro_vacants <- one_source_pro %>% filter(CombinedCategory != 'Remediation completed')
 
-#remove 'Completed Remediation' as a level as it's not needed
+#remove 'remediation completed' as a level as it's not needed
 one_source_pro_vacants <- droplevels(one_source_pro_vacants)
 
 #creating a new CombinedCategory variable which has the suffix - Vacant in the row names
