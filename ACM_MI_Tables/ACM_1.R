@@ -1,11 +1,3 @@
-# one_source_pro <- one_source_pro %>%
-#   mutate(Tenure = factor(Tenure))
-# 
-# 
-# one_source_pro_last_month <- one_source_pro_last_month %>%
-#   mutate(Tenure = factor(Tenure)) %>%
-#   rename(`Tenure Last Month` = `Tenure`)
-
 ACM_1 <- full_join(
   one_source_pro %>%
     count(Tenure, name = 'Number of buildings this month'),
