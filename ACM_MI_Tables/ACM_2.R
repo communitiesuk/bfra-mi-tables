@@ -8,17 +8,17 @@
 #                              , 'Reported an intent to remediate', 'Remediation plan unclear')
 
 
-ACM_2 <- list(one_source_pro %>% filter(Tenure == 'social') %>% count(CombinedCategory, name  = 'Social sector residential Number', sort = FALSE),
+ACM_2 <- list(one_source_pro %>% filter(Tenure == 'social') %>% count(CombinedCategory, name  = 'Social sector residential Number'),
                          
-                         one_source_pro %>% filter(Tenure == 'private residential') %>% count(CombinedCategory, name  = 'Private sector residential Number', sort = FALSE),
+                         one_source_pro %>% filter(Tenure == 'private residential') %>% count(CombinedCategory, name  = 'Private sector residential Number'),
               
-                         one_source_pro %>% filter(Tenure == 'student') %>% count(CombinedCategory, name  = 'Student accommodation Number', sort = FALSE),
+                         one_source_pro %>% filter(Tenure == 'student') %>% count(CombinedCategory, name  = 'Student accommodation Number'),
               
-                         one_source_pro %>% filter(Tenure == 'hotel') %>% count(CombinedCategory, name  = 'Hotels Number', sort = FALSE),
+                         one_source_pro %>% filter(Tenure == 'hotel') %>% count(CombinedCategory, name  = 'Hotels Number'),
               
-                         one_source_pro %>% filter(Tenure == 'public') %>% count(CombinedCategory, name  = 'Publicly-owned buildings Number', sort = FALSE),
+                         one_source_pro %>% filter(Tenure == 'public') %>% count(CombinedCategory, name  = 'Publicly-owned buildings Number'),
               
-                         one_source_pro %>% count(CombinedCategory, name = 'Total: all tenures Number', sort = FALSE)) %>% reduce(full_join, by = 'CombinedCategory') %>%
+                         one_source_pro %>% count(CombinedCategory, name = 'Total: all tenures Number')) %>% reduce(full_join, by = 'CombinedCategory') %>%
   rename(`Remediation Category` = `CombinedCategory` ) %>%
   # 
   # mutate(`Remediation Category` = factor(`Remediation Category`, levels = c('Completed Remediation', 'Works complete awaiting building control signoff', 'Remediation started - cladding removed', 'Remediation started', 'Remediation plans in place'
