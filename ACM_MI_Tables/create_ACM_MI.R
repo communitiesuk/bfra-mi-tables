@@ -34,7 +34,7 @@ one_source_pro <- read_excel(master_analytical, sheet = 'One_source_pro')
 last_month_name <- month.name[as.numeric(last_month)]
 
 last_year <- if (last_month == '12') {
-  last_year <- as.numeric(year) - 1
+  last_year <- as.character(as.numeric(year) - 1)
 } else
 {
   last_year  = year
