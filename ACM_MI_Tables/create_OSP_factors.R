@@ -4,7 +4,10 @@
 one_source_pro <- one_source_pro %>%
   mutate(Tenure = factor(Tenure),
          CombinedCategory = factor(CombinedCategory, levels = c('Remediation completed', 'Works complete awaiting building control signoff', 'Remediation started - cladding removed',
-                                                                'Remediation started', 'Plans in place', 'Responded with intent', 'Remediation plan unclear') ))
+                                                                'Remediation started', 'Plans in place', 'Responded with intent', 'Remediation plan unclear') ),
+          PrivateFundStatusDR = factor(PrivateFundStatusDR, levels = c('No contact with delivery partners', 'Preparing application', 'Eligibility application submitted', 'Eligibility approved',
+                                                                       'Applications approved: for pre-contract support', 'Full cost application submitted', 'Applications approved: for full costs'))
+         )
 
 # #names used in the MI tables
 # levels(one_source_pro$CombinedCategory) <- c('Completed Remediation', 'Works complete awaiting building control signoff', 'Remediation started - cladding removed', 'Remediation started', 'Remediation plans in place'
