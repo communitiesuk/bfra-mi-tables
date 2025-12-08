@@ -29,4 +29,4 @@ is_dir(css_raw_path)
 sos_export = file.path(css_raw_path, list.files(css_raw_path, paste0('CSS data end ', month_name, '.xlsx')))
 
 # read in this month's CSS data
-sos_data <- read_excel(sos_export, sheet = 'SOS')
+css_data <- read_excel(sos_export, sheet = 'SOS')
